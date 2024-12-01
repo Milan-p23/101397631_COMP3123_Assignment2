@@ -1,0 +1,16 @@
+FROM node:14
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+# Add environment variables at build time
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
